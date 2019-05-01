@@ -1,14 +1,14 @@
 /**
  * first approach
  * @function isPangram
- * @param str {string}
+ * @param {string} str
  * @return {boolean} - if all letters in alphabet used in string
  */
 
 export const isPangram = (str: string): boolean => {
   //guard clause
   if (str.length < 27) return false;
-  const alphabets = [
+  const alphabets: Array<boolean | string> = [
     'a',
     'b',
     'c',

@@ -1,7 +1,7 @@
 /**
  * second approach
  * @function isPangram2
- * @param str {string}
+ * @param {string} str
  * @return {boolean} - if all letters in alphabet used in string
  */
 
