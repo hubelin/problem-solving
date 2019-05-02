@@ -8,7 +8,7 @@
 export const isPangram = (str: string): boolean => {
   //guard clause
   if (str.length < 27) return false;
-  const alphabets: Array<boolean | string> = [
+  const alphabets: Array<string> = [
     'a',
     'b',
     'c',

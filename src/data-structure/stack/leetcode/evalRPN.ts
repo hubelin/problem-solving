@@ -1,4 +1,5 @@
 /**
+ * https://leetcode.com/problems/evaluate-reverse-polish-notation/
  * @param {string[]} tokens
  * @return {number}
  */
@@ -10,7 +11,7 @@ export const evalRPN = (tokens: Array<string>): number => {
     if (operands.includes(tokens[i])) {
       const secondArg = operandStack.pop();
       const firstArg = operandStack.pop();
-      const result = Math.floor(eval(`${firstArg}${tokens[i]}${secondArg}`));
+      const result = Math.trunc(eval(`${firstArg}${tokens[i]}${secondArg}`));
       operandStack.push(`${result}`);
     } else {
       operandStack.push(tokens[i]);
