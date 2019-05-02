@@ -22,7 +22,7 @@ Constraints: O lying on the border should not be flipped [0][i] || [j][0]
  * @param {string[][]} board
  * @return {void} Do not return anything, modify board in-place instead.
  */
-const solve = board => {
+const solve = (board: string[][]): void => {
   for (let i = 0; i < board.length; i += 1) {
     for (let j = 0; j < board[i].length; j += 1) {
       if (board[i][j] === 'O') {
@@ -30,7 +30,7 @@ const solve = board => {
       }
     }
   }
-  function dfs(board, i, j) {
+  function dfs(board: string[][], i: number, j: number) {
     if (
       board[i][j] === 'X' ||
       i <= 0 ||
