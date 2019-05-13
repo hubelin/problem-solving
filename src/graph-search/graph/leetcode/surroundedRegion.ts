@@ -1,4 +1,4 @@
-const solve = (board: string[][]): string[][] => {
+export const solve = (board: string[][]): string[][] => {
   if (board.length === 0 || board[0].length === 0) return board;
   // loop through borders to see if anything is connected
   for (let i = 0; i < board[0].length; i += 1) {
@@ -6,7 +6,7 @@ const solve = (board: string[][]): string[][] => {
     if (board[0][i] === 'O') {
       dfs(board, 0, i);
     }
-    if (board[board.length - 1][0] === 'O') {
+    if (board[board.length - 1][i] === 'O') {
       dfs(board, board.length - 1, i);
     }
   }
@@ -15,7 +15,7 @@ const solve = (board: string[][]): string[][] => {
     if (board[i][0] === 'O') {
       dfs(board, i, 0);
     }
-    if (board[i][board[0].length] === 'O') {
+    if (board[i][board[0].length - 1] === 'O') {
       dfs(board, i, board[0].length - 1);
     }
   }
