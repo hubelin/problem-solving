@@ -1,57 +1,51 @@
-/*
- https://leetcode.com/problems/surrounded-regions/
- Problem statement: Given a 2D board containing 'X' and 'O' (the letter O), capture all regions surrounded by 'X'.
-A region is captured by flipping all 'O's into 'X's in that surrounded region.
-
-Input : 
-X X X X
-X O O X
-X X O X
-X O X X
-
-Output:
-X X X X
-X X X X
-X X X X
-X O X X
-
-Constraints: O lying on the border should not be flipped [0][i] || [j][0]
-*/
-
-/**
- * @param {string[][]} board
- * @return {void} Do not return anything, modify board in-place instead.
- */
-const solve = (board: string[][]): void => {
+const solve = (board: string[][]): string[][] => {
+  if (board.length === 0 || board[0].length === 0) return board;
+  // loop through borders to see if anything is connected
+  for (let i = 0; i < board[0].length; i += 1) {
+    // loop through the top and bottom border from left to right
+    if (board[0][i] === 'O') {
+      dfs(board, 0, i);
+    }
+    if (board[board.length - 1][0] === 'O') {
+      dfs(board, board.length - 1, i);
+    }
+  }
   for (let i = 0; i < board.length; i += 1) {
-    for (let j = 0; j < board[i].length; j += 1) {
-      if (board[i][j] === 'O') {
-        dfs(board, i, j);
+    // loop through the left and right border from top to bottom
+    if (board[i][0] === 'O') {
+      dfs(board, i, 0);
+    }
+    if (board[i][board[0].length] === 'O') {
+      dfs(board, i, board[0].length - 1);
+    }
+  }
+  // turn any Os not flipped to X and turn any '#' (connected to an O at a border) to O
+  for (let i = 0; i < board.length; i += 1) {
+    for (let j = 0; j < board[0].length; j += 1) {
+      if (board[i][j] === '#') {
+        board[i][j] = 'O';
+      } else if (board[i][j] === 'O') {
+        board[i][j] = 'X';
       }
     }
   }
-  function dfs(board: string[][], i: number, j: number) {
-    if (
-      board[i][j] === 'X' ||
-      i <= 0 ||
-      j <= 0 ||
-      i >= board.length ||
-      j >= board[i].length
-    ) {
-      return;
-    }
-    board[i][j] = 'X';
-    dfs(board, i + 1, j);
-    dfs(board, i - 1, j);
-    dfs(board, i, j + 1);
-    dfs(board, i, j - 1);
-  }
-  console.log(board);
+  return board;
 };
-const board = [
-  ['X', 'X', 'X', 'X'],
-  ['X', 'O', 'O', 'X'],
-  ['X', 'X', 'O', 'X'],
-  ['X', 'O', 'X', 'X']
-];
-console.log(solve(board));
+
+function dfs(board: string[][], row: number, col: number) {
+  if (!isValid(board, row, col)) return;
+  board[row][col] = '#';
+  dfs(board, row + 1, col);
+  dfs(board, row - 1, col);
+  dfs(board, row, col + 1);
+  dfs(board, row, col - 1);
+}
+function isValid(board: string[][], row: number, col: number) {
+  return (
+    row >= 0 &&
+    row < board.length &&
+    col >= 0 &&
+    col < board[0].length &&
+    board[row][col] === 'O'
+  );
+}

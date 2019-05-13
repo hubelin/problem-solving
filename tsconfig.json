@@ -3,7 +3,7 @@
     "target": "ES6",
     "outDir": "build",
     "allowJs": true,
-    // "checkJs": true,
+    "checkJs": true,
     "module": "commonjs",
     "noEmitOnError": false,
     "strict": true,
@@ -12,7 +12,7 @@
     "noImplicitThis": true,
     "sourceMap": true,
     "experimentalDecorators": true,
-    "lib": ["dom", "es2017", "dom.iterable", "scripthost"]
+    "lib": ["es6"]
   },
   "exclude": ["node_modules"]
 }

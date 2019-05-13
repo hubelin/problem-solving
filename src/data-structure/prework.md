@@ -15,3 +15,17 @@ Consider two implementations of the queue abstract data type, one implemented us
 
 What are the trade-offs being made between chaining and linear probing? Which of these do you think is more commonly used?
 Considering a hash map that uses chaining, when should the underlying array grow? What about for one that uses linear probing?
+
+- Linear probing
+
+  - handles collision through open addressing (finding next open slot or address in the hash table)
+
+  - disadvantage - tendency for clustering where if many collisions happen in the same area, the number of slots arround will be filled by linear probing
+
+  - one way to get around that is skipping slots when open addressing
+
+- Chaining
+
+  - allow each slot to hold a reference to a chain/collection of items
+
+  - if more items hashes to the same location, difficulty of searching for item in collection increases
