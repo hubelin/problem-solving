@@ -15,7 +15,7 @@ Output: [
   "..Q."],
 */
 
-const solveNQueens = (n: number) => {
+const solveNQueens = (n: number): string[][] | number => {
   if (n === 0) return 0;
 
   const board = Array(n)
