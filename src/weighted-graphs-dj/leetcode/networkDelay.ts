@@ -41,10 +41,10 @@ const networkDelayTime = (times: number[][], N: number, K: number): number => {
         }
       }
     }
-    if (Object.keys(prevCost).length !== N - 1) {
-      return -1;
-    } else {
-      return Math.max(...Object.values(prevCost));
-    }
+  }
+  if (Object.keys(prevCost).length !== N - 1) {
+    return -1;
+  } else {
+    return Math.max(...Object.values(prevCost));
   }
 };
